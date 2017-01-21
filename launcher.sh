@@ -4,4 +4,4 @@ SCRIPT_DIR="$(dirname ${SCRIPT})"
 
 export VIMRUNTIME="${SCRIPT_DIR}/../share/nvim/runtime" 
 export PATH="${SCRIPT_DIR}":$PATH
-"${SCRIPT_DIR}"/nvim-binary
+"${SCRIPT_DIR}"/nvim-binary "$@"
