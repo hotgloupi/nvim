@@ -22,14 +22,14 @@ addons:
 script:
   - YCM_CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
 before_deploy:
-- export PACKAGE_NAME=nvim-${TRAVIS_OS_NAME}
-- echo "Preparing package ${PACKAGE_NAME}"
-- cd install && tar cjf ../${PACKAGE_NAME}.tgz *
+- export TARBALL=${TRAVIS_BUILD_DIR}/nvim-${TRAVIS_OS_NAME}.tgz
+- echo "Preparing package ${TARBALL}"
+- cd install && tar cjf ${TARBALL} *
 deploy:
   provider: releases
   api_key:
     secure: "atwWTps0XiYzddvr5MU0uvEaiIDu7m9cEKWQZtjO/yciyAbyNmCPoMrQ8cQFo6/xDwQGaSzcmJ4bnJXmXOXX4o8hB8jQEJ/c1G2/LDuM3UsBUB3K7bLsUzrdyyNwWTAhQnH3DjCYaq/49z+KmK2SBcvG62lsGKuiBwYnYWiebkgzll+RSVUEBAlusXwSrlzI4ZNxwC2RRQOznbHWYreaSK4XKneN1vHdfTgovetYx3nL8iEc8T6nMc1IwMRVYX6g4elav+bPpd5AIPkI8XPA8dn3Jrx83YMzULW1nqWc28jRuS5prNc1XSK5aOVVqtJJ1S+VV4f16d2/JV6YJho+gWrtvsioiNsVTxB1fxgl1MHrp3v+uunPI3nCxxlhhKI+b0C8OzU9pNHoxcaF12tXpkmFJ6bQGtqQuCA4x2RTDaxAIAxNZzEKgQaFs70jsyPH5ie/Q/PXl7HdLCh2wZb2dFqte2d9oAVDaLwJMPondK+lg/X/oPTjnb0eHw/Op8Nb3ltcRTOePbgdDRmuGq4R80O4peZtpuXUkkQQmZRTxaCWnG3oF2La55tSrCytjIy7p/cX2MqGKewLLSyyU6RAukkjag3Z3V+fT4WDkZusC4r6y3GxPtsbjjYGUPjsqL+exL1oSGIG9aY3bSGjYzzIub8O8G4I9UiIATLGYJTaYkk="
-  file: ${PACKAGE_NAME}.tgz
+  file: ${TARBALL}
   skip_cleanup: true
   on:
     repo: hotgloupi/nvim
