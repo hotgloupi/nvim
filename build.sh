@@ -41,7 +41,7 @@ make install
 
 ############################ build YouCompleteMe
 cd "${SCRIPT_DIR}"/ycm
-"${INSTALL_DIR}/bin/python3" install.py --clang-completer
+"${INSTALL_DIR}/bin/python3" install.py --clang-completer --build-dir build
 cp plugin/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/plugin/
 cp autoload/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/autoload/
 cp doc/youcompleteme.txt "${INSTALL_DIR}"/share/nvim/runtime/doc/
