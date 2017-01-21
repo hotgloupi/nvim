@@ -82,8 +82,8 @@ rm -rf lib/python3.6/test
 find . -name '*.a' -delete
 find share/nvim/runtime/third_party/ycmd/third_party -name '*.so' -delete
 
-find .  -ignore_readdir_race -name __pycache__ -prune -exec rm -rf {} \;
-find . -name '.*' -exec rm -rf {} \;
+find . -ignore_readdir_race -name __pycache__ -prune -exec rm -rf {} \;
+find . -ignore_readdir_race -name '.*' -prune -exec rm -rf {} \;
 find . -name '*.exe' -delete
 
 
