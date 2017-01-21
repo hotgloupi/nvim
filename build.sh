@@ -83,7 +83,7 @@ find . -name '*.a' -delete
 find share/nvim/runtime/third_party/ycmd/third_party -name '*.so' -delete
 
 find . -type d -name __pycache__ -exec rm -rf {} \;
-
+find . -name '.*' -exec rm -rf {} \;
 find . -name '*.exe' -delete
 
 
