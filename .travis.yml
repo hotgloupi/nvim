@@ -1,5 +1,6 @@
 sudo: false
 dist: trusty
+language: generic
 script:
   - ./build.sh
 git:
@@ -8,8 +9,10 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-3.6
     packages:
-    - g++
+    - g++-5
+    - gcc-5
     - libtool
     - autoconf
     - automake
