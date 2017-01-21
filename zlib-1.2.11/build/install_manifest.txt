@@ -1,0 +1,8 @@
+/home/hotgloupi/sandbox/nvim/install/lib/libz.so.1.2.11
+/home/hotgloupi/sandbox/nvim/install/lib/libz.so.1
+/home/hotgloupi/sandbox/nvim/install/lib/libz.so
+/home/hotgloupi/sandbox/nvim/install/lib/libz.a
+/home/hotgloupi/sandbox/nvim/install/include/zconf.h
+/home/hotgloupi/sandbox/nvim/install/include/zlib.h
+/home/hotgloupi/sandbox/nvim/install/share/man/man3/zlib.3
+/home/hotgloupi/sandbox/nvim/install/share/pkgconfig/zlib.pc

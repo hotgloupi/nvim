@@ -1,0 +1,9 @@
+[submodule "neovim"]
+	path = neovim
+	url = https://github.com/neovim/neovim.git
+[submodule "ycm"]
+	path = ycm
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "openssl"]
+	path = openssl
+	url = https://github.com/openssl/openssl.git

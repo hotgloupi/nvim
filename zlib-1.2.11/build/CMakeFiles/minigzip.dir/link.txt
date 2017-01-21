@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/minigzip.dir/test/minigzip.o  -o minigzip -rdynamic libz.so.1.2.11 -Wl,-rpath,/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build 
