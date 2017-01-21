@@ -18,6 +18,7 @@ addons:
     - cmake-data
     - pkg-config
     - unzip
+    - chrpath
 script:
   - YCM_CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
 before_deploy:
