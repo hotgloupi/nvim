@@ -1,0 +1,33 @@
+sudo: false
+script:
+  - ./build.sh
+git:
+  submodules: true
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - boost-latest
+    packages:
+    - g++-5.0
+    - libtool
+    - autoconf
+    - automake
+    - cmake
+    - pkg-config
+    - unzip
+before_deploy:
+- export PACKAGE_NAME=nvim-${TRAVIS_OS_NAME}
+- echo "Preparing package ${PACKAGE_NAME}"
+- cd install && tar cjf ../${PACKAGE_NAME}.tgz *
+deploy:
+  provider: releases
+  api_key:
+    secure: nzLoJpqguyW/29kwZ5/imALsHYhmfF8zZ2uNZ125D9YX5GkrBp8IQ2jIGOj7GpKqq2C+sSnKykRSFQwiuTe0eriZyCll62OG7Ii1EgpxvSrL6mNmU9/qWyZANSrjS6xip+Ozav5Oard5yIxWO8eQ/mnA38gpIkaQd/GmM5o13PU=
+  file: ${PACKAGE_NAME}.tgz
+  skip_cleanup: true
+  on:
+    repo: hotgloupi/nvim
+    tags: true
+    all_branches: true
+
