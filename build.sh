@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eau
+set -eaux
 SCRIPT="$(readlink -f $0)"
 SCRIPT_DIR="$(dirname ${SCRIPT})"
 INSTALL_DIR="${SCRIPT_DIR}/install"
