@@ -19,7 +19,7 @@ addons:
     - pkg-config
     - unzip
 script:
-  - CXX=g++-5 CC=gcc-5 ./build.sh
+  - YCM_CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
 before_deploy:
 - export PACKAGE_NAME=nvim-${TRAVIS_OS_NAME}
 - echo "Preparing package ${PACKAGE_NAME}"
