@@ -1,4 +1,5 @@
 sudo: false
+dist: trusty
 script:
   - ./build.sh
 git:
@@ -7,7 +8,6 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    - george-edison55-precise-backports
     packages:
     - g++
     - libtool
