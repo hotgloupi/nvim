@@ -1,1 +1,0 @@
-/usr/bin/cc      CMakeFiles/example64.dir/test/example.o  -o example64 -rdynamic libz.so.1.2.11 -Wl,-rpath,/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build 

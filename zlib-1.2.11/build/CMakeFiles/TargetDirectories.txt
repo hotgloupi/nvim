@@ -1,6 +1,0 @@
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/example.dir
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/example64.dir
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/minigzip.dir
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/minigzip64.dir
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/zlib.dir
-/home/hotgloupi/sandbox/nvim/zlib-1.2.11/build/CMakeFiles/zlibstatic.dir
