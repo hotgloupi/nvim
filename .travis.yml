@@ -20,11 +20,11 @@ addons:
     - unzip
     - chrpath
 script:
-  - YCM_CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
+  - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
 before_deploy:
 - export TARBALL=${TRAVIS_BUILD_DIR}/nvim-${TRAVIS_OS_NAME}.tgz
 - echo "Preparing package ${TARBALL}"
-- cd install && tar cjf ${TARBALL} *
+- ./make-release.sh ${TRAVIS_OS_NAME}
 deploy:
   provider: releases
   api_key:
