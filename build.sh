@@ -77,10 +77,14 @@ if [ ! -f "${INSTALL_DIR}"/lib/libclang.so ]; then
 	cd "${SCRIPT_DIR}"/llvm*
 	mkdir -p build
 	cd build
-	${CMAKE} .. -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" -DCMAKE_BUILD_TYPE=Release \
+	${CMAKE} .. \
+		-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
+		-DCMAKE_BUILD_TYPE=Release \
 		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7"
 	make -j${CORES}
 	make install
+	cd "${INSTALL_DIR}"
+	cp share/clang/clang-format.py bin
 fi
 
 ############################# build YouCompleteMe
@@ -118,6 +122,7 @@ fi
 cat > "${INSTALL_DIR}"/share/nvim/sysinit.vim << EOF
 let g:python_host_program = \$NVIM_PYTHON_HOST_PROGRAM
 let g:python3_host_program = \$NVIM_PYTHON3_HOST_PROGRAM
+let g:clang_format_path = \$NVIM_CLANG_FORMAT_BINARY_PATH
 EOF
 
 
