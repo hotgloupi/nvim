@@ -120,8 +120,8 @@ fi
 
 ############################# Fix neovim python host programs
 cat > "${INSTALL_DIR}"/share/nvim/sysinit.vim << EOF
-let g:python_host_program = \$NVIM_PYTHON_HOST_PROGRAM
-let g:python3_host_program = \$NVIM_PYTHON3_HOST_PROGRAM
+let g:python_host_prog = \$NVIM_PYTHON_HOST_PROGRAM
+let g:python3_host_prog = \$NVIM_PYTHON3_HOST_PROGRAM
 let g:clang_format_path = \$NVIM_CLANG_FORMAT_BINARY_PATH
 EOF
 
