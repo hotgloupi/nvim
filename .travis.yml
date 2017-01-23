@@ -24,6 +24,7 @@ script:
 before_deploy:
 - export TARBALL=${TRAVIS_BUILD_DIR}/nvim-${TRAVIS_OS_NAME}.tgz
 - echo "Preparing package ${TARBALL}"
+- find build-${TRAVIS_OS_NAME} -name ycm_core.so
 - ./make-release.sh ${TRAVIS_OS_NAME}
 deploy:
   provider: releases

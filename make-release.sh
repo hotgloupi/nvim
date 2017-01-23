@@ -104,7 +104,8 @@ chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_packer.so
 chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_unpacker.so
 
 # ycm core
-echo "ycm_core location: `find . -name ycm_core.so`"
+find "${BUILD_DIR}" -name ycm_core.so
+find "${RELEASE_DIR}" -name ycm_core.so
 chrpath -r '$ORIGIN/../../../../../lib' share/nvim/runtime/third_party/ycmd/ycm_core.so
 
 

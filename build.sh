@@ -128,5 +128,3 @@ EOF
 
 ############################## Remove hidden directories
 find "${INSTALL_DIR}" -ignore_readdir_race -name '.*' -prune -exec rm -rf {} \;
-#
-#
