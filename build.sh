@@ -9,7 +9,7 @@ CORES=${CORES:-4}
 ############################# build neovim
 if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
 	cd "${SCRIPT_DIR}"/neovim
-	make \
+	make -j${CORES} \
 		CMAKE_BUILD_TYPE=Release \
 		BUILD_TYPE="Unix Makefiles" \
 		CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
@@ -116,8 +116,8 @@ fi
 
 ############################# Fix neovim python host programs
 cat > "${INSTALL_DIR}"/share/nvim/sysinit.vim << EOF
-let g:python_host_program = "\$NVIM_PYTHON_HOST_PROGRAM"
-let g:python3_host_program = "\$NVIM_PYTHON3_HOST_PROGRAM"
+let g:python_host_program = \$NVIM_PYTHON_HOST_PROGRAM
+let g:python3_host_program = \$NVIM_PYTHON3_HOST_PROGRAM
 EOF
 
 
