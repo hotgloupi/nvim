@@ -21,7 +21,8 @@ script:
   - env
   - mkdir -p ~/local
   - wget -O - https://cmake.org/files/v3.6/cmake-3.6.3-Linux-i386.tar.gz | tar xzf - -C ~/local
-  - export PATH=~/local/cmake-3.6.3-Linux-i386/bin:$PATH
+  - export CMAKE=~/local/cmake-3.6.3-Linux-i386/bin/cmake
+  - export CMAKE_ROOT=~/local/cmake-3.6.3-Linux-i386/share/cmake-3.6
   - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
   - find build-${TRAVIS_OS_NAME} -name ycm_core.so
   - cat ycm.log
