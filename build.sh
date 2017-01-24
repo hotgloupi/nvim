@@ -12,6 +12,9 @@ ls -la ~/local/cmake-3.6.3-Linux-i386/bin
 ls -la ~/local/cmake-3.6.3-Linux-i386/bin/cmake
 ls -la $CMAKE
 ls -la $CMAKE_ROOT
+ls -la ${CMAKE}
+ls -la ${CMAKE_ROOT}
+${CMAKE} --version
 
 ############################# build neovim
 if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
