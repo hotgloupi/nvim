@@ -91,7 +91,7 @@ fi
 if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; then
 	cd "${SCRIPT_DIR}"/ycm
 	mkdir -p build
-	cd build 
+	cd build
 	${CMAKE} \
 		-G "Unix Makefiles" \
 		-DEXTERNAL_LIBCLANG_PATH="${INSTALL_DIR}/lib/libclang.so" \
@@ -115,6 +115,12 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 	cp -r third_party/retries "${INSTALL_DIR}"/share/nvim/runtime/third_party
 	cp third_party/ycmd/ycm_core.so "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/
 	cp -r  third_party/ycmd/CORE_VERSION "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
+fi
+
+find "${INSTALL_DIR}" -name ycm_core.so
+
+if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; then
+	exit 1;
 fi
 
 
