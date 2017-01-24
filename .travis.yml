@@ -14,12 +14,11 @@ addons:
     - libtool
     - autoconf
     - automake
-    - cmake
-    - cmake-data
     - pkg-config
     - unzip
     - chrpath
 script:
+  - env
   - mkdir -p ~/local
   - wget -O - https://cmake.org/files/v3.6/cmake-3.6.3-Linux-i386.tar.gz | tar xzf - -C ~/local
   - export PATH=~/local/cmake-3.6.3-Linux-i386/bin:$PATH
