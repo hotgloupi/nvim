@@ -6,6 +6,13 @@ INSTALL_DIR="${SCRIPT_DIR}/${BUILD_NAME:-build-linux}"
 CMAKE=${CMAKE:-cmake}
 CORES=${CORES:-4}
 
+ls -la ~/local
+ls -la ~/local/cmake-3.6.3-Linux-i386
+ls -la ~/local/cmake-3.6.3-Linux-i386/bin
+ls -la ~/local/cmake-3.6.3-Linux-i386/bin/cmake
+ls -la $CMAKE
+ls -la $CMAKE_ROOT
+
 ############################# build neovim
 if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
 	echo "Building Neovim"
