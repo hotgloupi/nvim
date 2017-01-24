@@ -9,11 +9,18 @@ CORES=${CORES:-4}
 ############################# build neovim
 if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
 	echo "Building Neovim"
+
 	cd "${SCRIPT_DIR}"/neovim
-	make -j${CORES} \
-		CMAKE_BUILD_TYPE=Release \
-		BUILD_TYPE="Unix Makefiles" \
-		CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}" > "${SCRIPT_DIR}"/neovim.log
+	mkdir -p .deps
+	cd .deps
+	${CMAKE} ../third-party -DCMAKE_BUILD_TYPE=Release > "${SCRIPT_DIR}"/neovim.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/neovim.log
+
+	cd "${SCRIPT_DIR}"/neovim
+	mkdir -p build
+	cd build
+	${CMAKE} .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" >> "${SCRIPT_DIR}"/neovim.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/neovim.log
 	make install >> "${SCRIPT_DIR}"/neovim.log
 	mv "${INSTALL_DIR}/bin/nvim" "${INSTALL_DIR}/bin/nvim-binary"
 	cp "${SCRIPT_DIR}/launcher.sh" "${INSTALL_DIR}/bin/nvim"
