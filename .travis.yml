@@ -23,7 +23,7 @@ script:
   - wget -O - https://cmake.org/files/v3.6/cmake-3.6.3-Linux-x86_64.tar.gz | tar xzf - -C ~/local
   - export CMAKE=~/local/cmake-3.6.3-Linux-x86_64/bin/cmake
   - export CMAKE_ROOT=~/local/cmake-3.6.3-Linux-x86_64/share/cmake-3.6
-  - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
+  - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=2 CXX=g++-5 CC=gcc-5 travis_wait 50 ./build.sh
   - find build-${TRAVIS_OS_NAME} -name ycm_core.so
   - cat ycm.log
 before_deploy:
