@@ -99,8 +99,8 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 		-DPYTHON_INCLUDE_DIR="${INSTALL_DIR}/include/python2.7" \
 		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" \
 		-DCMAKE_BUILD_TYPE=Release \
-		../third_party/ycmd/cpp
-	make -j${CORES}
+		../third_party/ycmd/cpp | tee ycm.log
+	make -j${CORES} | tee -a ycm.log
 
 	cd "${SCRIPT_DIR}"/ycm
 	cp plugin/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/plugin/
@@ -116,13 +116,6 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 	cp third_party/ycmd/ycm_core.so "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/
 	cp -r  third_party/ycmd/CORE_VERSION "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
 fi
-
-find "${INSTALL_DIR}" -name ycm_core.so
-
-if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; then
-	exit 1;
-fi
-
 
 ############################# Fix neovim python host programs
 cat > "${INSTALL_DIR}"/share/nvim/sysinit.vim << EOF
