@@ -6,14 +6,6 @@ INSTALL_DIR="${SCRIPT_DIR}/${BUILD_NAME:-build-linux}"
 CMAKE=${CMAKE:-cmake}
 CORES=${CORES:-4}
 
-ls -la ~/local
-ls -la ~/local/cmake-3.6.3-Linux-i386
-ls -la ~/local/cmake-3.6.3-Linux-i386/bin
-ls -la ~/local/cmake-3.6.3-Linux-i386/bin/cmake
-ls -la $CMAKE
-ls -la $CMAKE_ROOT
-ls -la ${CMAKE}
-ls -la ${CMAKE_ROOT}
 ${CMAKE} --version
 
 ############################# build neovim
