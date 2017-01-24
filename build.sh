@@ -8,54 +8,59 @@ CORES=${CORES:-4}
 
 ############################# build neovim
 if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
+	echo "Building Neovim"
 	cd "${SCRIPT_DIR}"/neovim
 	make -j${CORES} \
 		CMAKE_BUILD_TYPE=Release \
 		BUILD_TYPE="Unix Makefiles" \
-		CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
-	make install
+		CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}" > "${SCRIPT_DIR}"/neovim.log
+	make install >> "${SCRIPT_DIR}"/neovim.log
 	mv "${INSTALL_DIR}/bin/nvim" "${INSTALL_DIR}/bin/nvim-binary"
 	cp "${SCRIPT_DIR}/launcher.sh" "${INSTALL_DIR}/bin/nvim"
 fi
 
 ############################ build zlib
 if [ ! -f "${INSTALL_DIR}"/lib/libz.so ]; then
+	echo "Building zlib"
 	cd "${SCRIPT_DIR}"/zlib*
 	mkdir -p build
 	cd build
-	${CMAKE} .. -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
-	make install
+	${CMAKE} .. -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" > "${SCRIPT_DIR}"/zlib.log
+	make install >> "${SCRIPT_DIR}"/zlib.log
 fi
 
 ############################ build openssl
 if [ ! -f "${INSTALL_DIR}"/lib/libssl.a ]; then
+	echo "Building OpenSSL"
 	cd "${SCRIPT_DIR}"/openssl
 	./Configure linux-x86_64 no-shared \
 		-fPIC \
 		-I"${INSTALL_DIR}"/include \
 		-L"${INSTALL_DIR}"/lib \
 		--prefix="${INSTALL_DIR}" \
-		--openssldir="${INSTALL_DIR}/ssl"
-	make
-	make install
+		--openssldir="${INSTALL_DIR}/ssl" > "${SCRIPT_DIR}"/openssl.log
+	make >> "${SCRIPT_DIR}"/openssl.log
+	make install >> "${SCRIPT_DIR}"/openssl.log
 fi
 
 ############################ build python3
 if [ ! -f "${INSTALL_DIR}"/bin/python3 ]; then
+	echo "Building Python 3"
 	cd "${SCRIPT_DIR}"/Python-3.*
 	mkdir -p build
 	cd build
 	../configure \
 		--prefix="${INSTALL_DIR}" \
 		--enable-shared \
-		LDFLAGS="-Wl,-rpath=${INSTALL_DIR}/lib"
-	make -j${CORES}
-	make install
-	"${INSTALL_DIR}"/bin/pip3 install neovim
+		LDFLAGS="-Wl,-rpath=${INSTALL_DIR}/lib" > "${SCRIPT_DIR}"/python-3.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/python-3.log
+	make install >> "${SCRIPT_DIR}"/python-3.log
+	"${INSTALL_DIR}"/bin/pip3 install neovim >> "${SCRIPT_DIR}"/python-3.log
 fi
 
 ############################# build python2
 if [ ! -f "${INSTALL_DIR}"/bin/python2 ]; then
+	echo "Building Python 2"
 	cd "${SCRIPT_DIR}"/Python-2.*
 	mkdir -p build
 	cd build
@@ -64,31 +69,33 @@ if [ ! -f "${INSTALL_DIR}"/bin/python2 ]; then
 		--enable-unicode=ucs4 \
 		--enable-shared \
 		--with-ensurepip=install \
-		LDFLAGS="-Wl,-rpath=${INSTALL_DIR}/lib"
-	make -j${CORES}
-	make install
-	"${INSTALL_DIR}"/bin/pip2.7 install neovim
+		LDFLAGS="-Wl,-rpath=${INSTALL_DIR}/lib" > "${SCRIPT_DIR}"/python-2.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/python-2.log
+	make install >> "${SCRIPT_DIR}"/python-2.log
+	"${INSTALL_DIR}"/bin/pip2.7 install neovim >> "${SCRIPT_DIR}"/python-2.log
 fi
 
 export PATH="${INSTALL_DIR}/bin":$PATH
 
 ############################# build LLVM and Clang
 if [ ! -f "${INSTALL_DIR}"/lib/libclang.so ]; then
+	echo "Building LLVM and clang"
 	cd "${SCRIPT_DIR}"/llvm*
 	mkdir -p build
 	cd build
 	${CMAKE} .. \
 		-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7"
-	make -j${CORES}
-	make install
+		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" > "${SCRIPT_DIR}"/llvm.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/llvm.log
+	make install >> "${SCRIPT_DIR}"/llvm.log
 	cd "${INSTALL_DIR}"
 	cp share/clang/clang-format.py bin
 fi
 
 ############################# build YouCompleteMe
 if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; then
+	echo "Building YCM"
 	cd "${SCRIPT_DIR}"/ycm
 	mkdir -p build
 	cd build
@@ -99,8 +106,8 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 		-DPYTHON_INCLUDE_DIR="${INSTALL_DIR}/include/python2.7" \
 		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" \
 		-DCMAKE_BUILD_TYPE=Release \
-		../third_party/ycmd/cpp | tee ycm.log
-	make -j${CORES} | tee -a ycm.log
+		../third_party/ycmd/cpp > "${SCRIPT_DIR}"/ycm.log
+	make -j${CORES} >> "${SCRIPT_DIR}"/ycm.log
 
 	cd "${SCRIPT_DIR}"/ycm
 	cp plugin/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/plugin/

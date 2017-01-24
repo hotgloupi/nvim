@@ -20,9 +20,9 @@ addons:
     - unzip
     - chrpath
 script:
-  - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh 2>&1 | tee build.log | sed -n '1~1000p' || ( tail -n1000 build.log && exit 1 )
-  - cat ycm/ycm.log
+  - BUILD_NAME=build-${TRAVIS_OS_NAME} CORES=1 CXX=g++-5 CC=gcc-5 ./build.sh
   - find build-${TRAVIS_OS_NAME} -name ycm_core.so
+  - cat ycm.log
 before_deploy:
 - export TARBALL=${TRAVIS_BUILD_DIR}/nvim-${TRAVIS_OS_NAME}.tgz
 - echo "Preparing package ${TARBALL}"
