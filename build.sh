@@ -28,6 +28,17 @@ if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
 	cp "${SCRIPT_DIR}/launcher.sh" "${INSTALL_DIR}/bin/nvim"
 fi
 
+############################# build xsel
+if [ ! -f "${INSTALL_DIR}"/bin/xsel ]; then
+	echo "Building xsel"
+	cd "${SCRIPT_DIR}"/xsel*
+	mkdir -p build
+	cd build
+	../configure --prefix="${INSTALL_DIR}"
+	make
+	make install
+fi
+
 ############################ build zlib
 if [ ! -f "${INSTALL_DIR}"/lib/libz.so ]; then
 	echo "Building zlib"
