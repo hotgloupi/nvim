@@ -11,10 +11,14 @@ RUN yum install -y \
         devtoolset-2-elfutils \
         git \
         make \
-        tar \ 
-	chrpath \
-	libtool
+        tar \
+        chrpath \
+        libtool
+RUN yum install -y \
+        libX11-devel \
+        strace
 RUN yum install -y unzip
+RUN yum install -y libXt-devel
 RUN ln -s /usr/bin/cmake3 /usr/bin/cmake
 RUN groupadd -r -g $(id -g) ${USER} && useradd -r -g ${USER} -u $(id -u) ${USER}
 ENV HOME /home/${USER}
