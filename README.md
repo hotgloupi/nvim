@@ -21,7 +21,7 @@
  Just grab the last version and extract it in a prefix of your choice:
 
     $ mkdir ~/local
-    $ wget -O - https://github.com/hotgloupi/nvim/releases/download/0.6/nvim-centos6.tgz | tar xjf - -C ~/local
+    $ wget -O - https://github.com/hotgloupi/nvim/releases/download/0.6/nvim-linux.x86_64.tgz | tar xjf - -C ~/local
     $ export PATH=~/local/bin:$PATH
     $ nvim --version
 
