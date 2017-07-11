@@ -31,8 +31,10 @@ rm -f bin/python3.6m
 rm -f bin/easy_install*
 rm -f bin/idle*
 rm -f bin/llvm*
-rm -f bin/clang-3.9
+rm -f bin/clang-4.0
 rm -f bin/clang
+rm -f bin/clang-cpp
+rm -f bin/clang-import-test
 rm -f bin/clang++
 rm -f bin/clang-cl
 rm -f bin/clang-check
@@ -51,7 +53,7 @@ rm -f bin/verify-uselistorder
 rm -rf bin/python*-config
 
 rm -f lib/BugpointPasses.so
-rm -f lib/libLTO.so
+rm -f lib/libLTO.so*
 rm -f lib/LLVMHello.so
 rm -rf lib/python3.6/test
 rm -rf lib/python2.7/test
