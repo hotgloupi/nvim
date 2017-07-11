@@ -139,7 +139,6 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 	cp -r  third_party/ycmd/third_party "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
 	cp -r third_party/pythonfutures "${INSTALL_DIR}"/share/nvim/runtime/third_party
 	cp -r third_party/requests-futures "${INSTALL_DIR}"/share/nvim/runtime/third_party
-	cp -r third_party/retries "${INSTALL_DIR}"/share/nvim/runtime/third_party
 	cp third_party/ycmd/ycm_core.so "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/
 	cp -r  third_party/ycmd/CORE_VERSION "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
 fi
