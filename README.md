@@ -4,11 +4,11 @@
 
  Prebuilt neovim that includes:
 
- - Neovim 0.1.7
+ - Neovim 0.2.0
  - YouCompleteMe
  - Python 2.7.13
  - Python 3.6.0
- - LLVM+clang 3.9.1
+ - LLVM+clang 4.0.0
 
  For now, only linux binaries are provided, do not hesitate to open an issue if
  you need it for another platform.
@@ -21,7 +21,7 @@
  Just grab the last version and extract it in a prefix of your choice:
 
     $ mkdir ~/local
-    $ wget -O - https://github.com/hotgloupi/nvim/releases/download/0.6/nvim-linux.x86_64.tgz | tar xjf - -C ~/local
+    $ wget -O - https://github.com/hotgloupi/nvim/releases/download/0.7/nvim-centos6.tgz | tar xjf - -C ~/local
     $ export PATH=~/local/bin:$PATH
     $ nvim --version
 
