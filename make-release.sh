@@ -14,11 +14,12 @@ if [ ! -d "${BUILD_DIR}" ]; then
 fi
 
 if [ -d "${RELEASE_DIR}" ]; then
-	echo "Warning: Using existing release directory in '${RELEASE_DIR}'"
-else
-	cp -r "${BUILD_DIR}" "${RELEASE_DIR}"
-	chmod -R u+rwX "${RELEASE_DIR}"
+	echo "ERROR: Found existing release directory in '${RELEASE_DIR}'"
+	exit 1
 fi
+
+cp -r "${BUILD_DIR}" "${RELEASE_DIR}"
+chmod -R u+rwX "${RELEASE_DIR}"
 
 ############################# Cleanup
 cd "${RELEASE_DIR}"
@@ -111,13 +112,19 @@ chrpath -r '$ORIGIN/../../../../../lib' share/nvim/runtime/third_party/ycmd/ycm_
 
 ########################### strip binaries
 cd "${RELEASE_DIR}"
-strip -x bin/nvim-binary 
+strip -x bin/nvim-binary
 strip -x bin/python2
-strip -x bin/python3 
+strip -x bin/python3
 find . \( -name '*.so' -o -name '*.so.*' \) -print -exec strip -x {} \;
 
 ########################### create the tarball
 cd "${RELEASE_DIR}"
+rm -rf .tmp
+mkdir -p .tmp/bin .tmp/share/nvim
+mv * .tmp/share/nvim
+( cd .tmp/bin && ln -s ../share/nvim/bin/nvim nvim )
+mv .tmp/* .
+rmdir .tmp
 rm -f "${RELEASE_TARBALL}"
 tar cjf "${RELEASE_TARBALL}" *
 
