@@ -121,6 +121,8 @@ if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; th
 	cd build
 	${CMAKE} \
 		-G "Unix Makefiles" \
+		-DCMAKE_CXX_COMPILER=${INSTALL_DIR}/bin/clang++ \
+		-DEXTRA_RPATH="a/very/long/name/that/will/let/enough/space" \
 		-DEXTERNAL_LIBCLANG_PATH="${INSTALL_DIR}/lib/libclang.so" \
 		-DPYTHON_LIBRARY="${INSTALL_DIR}/lib/libpython2.7.so" \
 		-DPYTHON_INCLUDE_DIR="${INSTALL_DIR}/include/python2.7" \
