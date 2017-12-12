@@ -6,6 +6,10 @@ INSTALL_DIR="${SCRIPT_DIR}/${BUILD_NAME:-build-linux}"
 CMAKE=${CMAKE:-cmake}
 CORES=${CORES:-4}
 
+unset PYTHONPATH
+unset PYTHONUSERBASE
+unset PYTHONHOME
+
 ${CMAKE} --version
 
 ############################# build neovim
@@ -16,7 +20,7 @@ if [ ! -f "${INSTALL_DIR}"/bin/nvim ]; then
 	mkdir -p .deps
 	cd .deps
 	${CMAKE} ../third-party -DCMAKE_BUILD_TYPE=Release > "${SCRIPT_DIR}"/neovim.log
-	make -j${CORES} >> "${SCRIPT_DIR}"/neovim.log
+	make >> "${SCRIPT_DIR}"/neovim.log
 
 	cd "${SCRIPT_DIR}"/neovim
 	mkdir -p build
