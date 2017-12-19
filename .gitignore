@@ -1,0 +1,5 @@
+*.log
+*.pyo
+./*/build
+*/build
+*.cache
