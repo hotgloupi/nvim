@@ -129,37 +129,6 @@ if [ ! -f "${INSTALL_DIR}"/bin/cquery ]; then
         --use-system-clang
 fi
 
-############################# build YouCompleteMe
-#if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/ycm_core.so ]; then
-#	echo "Building YCM"
-#	cd "${SCRIPT_DIR}"/ycm
-#	mkdir -p build
-#	cd build
-#	${CMAKE} \
-#		-G "Unix Makefiles" \
-#		-DEXTERNAL_LIBCLANG_PATH="${INSTALL_DIR}/lib/libclang.so" \
-#		-DPYTHON_LIBRARY="${INSTALL_DIR}/lib/libpython2.7.so" \
-#		-DPYTHON_INCLUDE_DIR="${INSTALL_DIR}/include/python2.7" \
-#		-DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" \
-#		-DCMAKE_BUILD_TYPE=Release \
-#		../third_party/ycmd/cpp > "${SCRIPT_DIR}"/ycm.log
-#	make -j${CORES} >> "${SCRIPT_DIR}"/ycm.log
-#
-#	cd "${SCRIPT_DIR}"/ycm
-#	cp plugin/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/plugin/
-#	cp autoload/youcompleteme.vim "${INSTALL_DIR}"/share/nvim/runtime/autoload/
-#	cp doc/youcompleteme.txt "${INSTALL_DIR}"/share/nvim/runtime/doc/
-#	cp -r python  "${INSTALL_DIR}"/share/nvim/runtime
-#	mkdir -p "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
-#	cp -r  third_party/ycmd/ycmd "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
-#	cp -r  third_party/ycmd/third_party "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
-#	cp -r third_party/pythonfutures "${INSTALL_DIR}"/share/nvim/runtime/third_party
-#	cp -r third_party/requests-futures "${INSTALL_DIR}"/share/nvim/runtime/third_party
-#	cp third_party/ycmd/ycm_core.so "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd/
-#	cp -r  third_party/ycmd/CORE_VERSION "${INSTALL_DIR}"/share/nvim/runtime/third_party/ycmd
-#fi
-
-
 ############################# Vim-plug
 if [ ! -f "${INSTALL_DIR}"/share/nvim/runtime/autoload/plug.vim ]; then
     cd "${SCRIPT_DIR}/vim-plug"
@@ -168,11 +137,9 @@ fi
 
 ############################# Fix neovim python host programs
 cat > "${INSTALL_DIR}"/share/nvim/sysinit.vim << EOF
-let g:ycm_server_python_interpreter = \$NVIM_PYTHON_HOST_PROGRAM
 let g:python_host_prog = \$NVIM_PYTHON_HOST_PROGRAM
 let g:python3_host_prog = \$NVIM_PYTHON3_HOST_PROGRAM
 let g:clang_format_path = \$NVIM_CLANG_FORMAT_BINARY_PATH
-let g:ycm_python_binary_path = 'python'
 EOF
 
 
