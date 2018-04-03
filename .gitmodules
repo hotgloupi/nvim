@@ -7,3 +7,9 @@
 [submodule "openssl"]
 	path = openssl
 	url = https://github.com/openssl/openssl.git
+[submodule "vim-plug"]
+	path = vim-plug
+	url = git@github.com:junegunn/vim-plug.git
+[submodule "cquery"]
+	path = cquery
+	url = git@github.com:jacobdufault/cquery.git

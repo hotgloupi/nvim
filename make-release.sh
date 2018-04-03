@@ -72,17 +72,17 @@ rm -rf share/clang
 rm -rf share/pkgconfig
 rm -rf share/scan-*
 
-rm -rf share/nvim/runtime/python/ycm/tests
-rm -rf share/nvim/runtime/third_party/ycmd/ycmd/tests
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/vendor/jedi/test
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/jedihttp/tests
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/vendor/waitress/waitress/tests
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/waitress/waitress/tests
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/bottle/test
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/gocode/_testing
-
-# XXX Saving 30Mb
-rm -rf share/nvim/runtime/third_party/ycmd/third_party/OmniSharpServer
+#rm -rf share/nvim/runtime/python/ycm/tests
+#rm -rf share/nvim/runtime/third_party/ycmd/ycmd/tests
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/vendor/jedi/test
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/jedihttp/tests
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/JediHTTP/vendor/waitress/waitress/tests
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/waitress/waitress/tests
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/bottle/test
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/gocode/_testing
+#
+## XXX Saving 30Mb
+#rm -rf share/nvim/runtime/third_party/ycmd/third_party/OmniSharpServer
 
 find . -ignore_readdir_race -name __pycache__ -prune -exec rm -rf {} \;
 find "${RELEASE_DIR}" -ignore_readdir_race -name '.*' -prune -exec rm -rf {} \;
@@ -107,9 +107,9 @@ chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_packer.so
 chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_unpacker.so
 
 # ycm core
-find "${BUILD_DIR}" -name ycm_core.so
-find "${RELEASE_DIR}" -name ycm_core.so
-chrpath -r '$ORIGIN/../../../../../lib' share/nvim/runtime/third_party/ycmd/ycm_core.so
+#find "${BUILD_DIR}" -name ycm_core.so
+#find "${RELEASE_DIR}" -name ycm_core.so
+#chrpath -r '$ORIGIN/../../../../../lib' share/nvim/runtime/third_party/ycmd/ycm_core.so
 
 
 ########################### strip binaries
