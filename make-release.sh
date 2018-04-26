@@ -106,6 +106,9 @@ chrpath -r '$ORIGIN/../../..' lib/python3.6/site-packages/msgpack/_unpacker.cpyt
 chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_packer.so
 chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_unpacker.so
 
+# cquery
+chrpath -r '$ORIGIN/../lib' bin/cquery
+
 # ycm core
 #find "${BUILD_DIR}" -name ycm_core.so
 #find "${RELEASE_DIR}" -name ycm_core.so

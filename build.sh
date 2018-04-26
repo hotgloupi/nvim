@@ -122,11 +122,16 @@ fi
 
 ############################# build cquery
 if [ ! -f "${INSTALL_DIR}"/bin/cquery ]; then
+	echo "Building cquery"
+	cd "${SCRIPT_DIR}"/cquery
     ./waf configure \
         --llvm-config="${INSTALL_DIR}/bin/llvm-config" \
         --variant=release \
         --prefix="${INSTALL_DIR}" \
-        --use-system-clang
+        --use-system-clang \
+        --use-clang-cxx
+    ./waf build
+    ./waf install
 fi
 
 ############################# Vim-plug
