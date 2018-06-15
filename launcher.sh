@@ -2,6 +2,11 @@
 SCRIPT="$(readlink -f $0)"
 SCRIPT_DIR="$(dirname ${SCRIPT})"
 
+unset PYTHONPATH
+unset PYTHONUSERBASE
+unset PYTHONHOME
+unset LD_LIBRARY_PATH
+
 export VIMRUNTIME="${SCRIPT_DIR}/../share/nvim/runtime"
 export NVIM_CLANG_FORMAT_SCRIPT_PATH="${SCRIPT_DIR}/clang-format.py"
 export NVIM_CLANG_FORMAT_BINARY_PATH="${SCRIPT_DIR}/clang-format"

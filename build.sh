@@ -80,7 +80,8 @@ if [ ! -f "${INSTALL_DIR}"/bin/python3 ]; then
     make -j${CORES} >> "${SCRIPT_DIR}"/python-3.log
     make install >> "${SCRIPT_DIR}"/python-3.log
     "${INSTALL_DIR}"/bin/pip3 install neovim >> "${SCRIPT_DIR}"/python-3.log
-    "${INSTALL_DIR}"/bin/pip3 install python-language-server >> "${SCRIPT_DIR}"/python-3.log
+    "${INSTALL_DIR}"/bin/pip3 install 'python-language-server[all]' >> "${SCRIPT_DIR}"/python-3.log
+    "${INSTALL_DIR}"/bin/pip3 install 'pycodestyle' >> "${SCRIPT_DIR}"/python-3.log
 fi
 
 ############################# build python2
@@ -98,7 +99,8 @@ if [ ! -f "${INSTALL_DIR}"/bin/python2 ]; then
     make -j${CORES} >> "${SCRIPT_DIR}"/python-2.log
     make install >> "${SCRIPT_DIR}"/python-2.log
     "${INSTALL_DIR}"/bin/pip2.7 install neovim >> "${SCRIPT_DIR}"/python-2.log
-    "${INSTALL_DIR}"/bin/pip2.7 install python-language-server >> "${SCRIPT_DIR}"/python-2.log
+    "${INSTALL_DIR}"/bin/pip2.7 install 'python-language-server[all]' >> "${SCRIPT_DIR}"/python-2.log
+    "${INSTALL_DIR}"/bin/pip2.7 install 'pycodestyle' >> "${SCRIPT_DIR}"/python-2.log
 fi
 
 export PATH="${INSTALL_DIR}/bin":$PATH
@@ -112,11 +114,12 @@ if [ ! -f "${INSTALL_DIR}"/lib/libclang.so ]; then
     ${CMAKE} .. \
         -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
         -DCMAKE_BUILD_TYPE=Release \
-        -DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" > "${SCRIPT_DIR}"/llvm.log
+        -DPYTHON_EXECUTABLE="${INSTALL_DIR}/bin/python2.7" \
+        > "${SCRIPT_DIR}"/llvm.log
     make -j${CORES} >> "${SCRIPT_DIR}"/llvm.log
     make install >> "${SCRIPT_DIR}"/llvm.log
-    cd "${INSTALL_DIR}"
-    cp share/clang/clang-format.py bin
+    cd ..
+    cp ./tools/clang/tools/clang-format/clang-format.py ${INSTALL_DIR}/bin
 fi
 
 
@@ -127,9 +130,7 @@ if [ ! -f "${INSTALL_DIR}"/bin/cquery ]; then
     ./waf configure \
         --llvm-config="${INSTALL_DIR}/bin/llvm-config" \
         --variant=release \
-        --prefix="${INSTALL_DIR}" \
-        --use-system-clang \
-        --use-clang-cxx
+        --prefix="${INSTALL_DIR}"
     ./waf build
     ./waf install
 fi

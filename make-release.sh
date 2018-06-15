@@ -13,13 +13,20 @@ if [ ! -d "${BUILD_DIR}" ]; then
 	exit 1
 fi
 
-if [ -d "${RELEASE_DIR}" ]; then
-	echo "ERROR: Found existing release directory in '${RELEASE_DIR}'"
-	exit 1
-fi
 
-cp -r "${BUILD_DIR}" "${RELEASE_DIR}"
-chmod -R u+rwX "${RELEASE_DIR}"
+try()
+{
+    ( "$@" ) || echo "    ---> failed, ignore error"
+}
+
+if [ -z "${USE_EXISTING_RELEASE:-}" ]; then
+    if [ -d "${RELEASE_DIR}" ]; then
+        echo "ERROR: Found existing release directory in '${RELEASE_DIR}'"
+        exit 1
+    fi
+    cp -r "${BUILD_DIR}" "${RELEASE_DIR}"
+    chmod -R u+rwX "${RELEASE_DIR}"
+fi
 
 ############################# Cleanup
 cd "${RELEASE_DIR}"
@@ -91,6 +98,11 @@ find . -name '*.a' -delete
 find . -name '*.pyc' -delete
 find . -name '*.pyo' -delete
 
+############################ Fix script path
+
+
+
+
 ############################ Fix RPATH
 cd "${RELEASE_DIR}"
 
@@ -101,10 +113,10 @@ for b in bin/python3 bin/python2 ; do chmod u+w "$b" ; chrpath -r '$ORIGIN/../li
 find lib/python3.6/lib-dynload -name '*.so' -exec chrpath -r '$ORIGIN/../..' {} \;
 find lib/python2.7/lib-dynload -name '*.so' -exec chrpath -r '$ORIGIN/../..' {} \;
 #chrpath -r '$ORIGIN/../..' lib/python3.6/site-packages/greenlet.cpython-36m-x86_64-linux-gnu.so
-chrpath -r '$ORIGIN/../../..' lib/python3.6/site-packages/msgpack/_packer.cpython-36m-x86_64-linux-gnu.so
-chrpath -r '$ORIGIN/../../..' lib/python3.6/site-packages/msgpack/_unpacker.cpython-36m-x86_64-linux-gnu.so
-chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_packer.so
-chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_unpacker.so
+try chrpath -r '$ORIGIN/../../..' lib/python3.6/site-packages/msgpack/_packer.cpython-36m-x86_64-linux-gnu.so
+try chrpath -r '$ORIGIN/../../..' lib/python3.6/site-packages/msgpack/_unpacker.cpython-36m-x86_64-linux-gnu.so
+try chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_packer.so
+try chrpath -r '$ORIGIN/../../..' lib/python2.7/site-packages/msgpack/_unpacker.so
 
 # cquery
 chrpath -r '$ORIGIN/../lib' bin/cquery
